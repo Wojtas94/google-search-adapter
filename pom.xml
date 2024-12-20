@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.avenga</groupId>
+	<artifactId>google-search-adapter</artifactId>
+	<version>1.0</version>
+	<name>google-search-adapter</name>
+	<description>Google search adapter</description>
+	
+	<properties>
+		<java.version>22</java.version>
+		<springboot.version>3.3.5</springboot.version>
+	</properties>
+	
+	<dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-aspects</artifactId>
+		</dependency>
+		<dependency>
+		   <groupId>org.springdoc</groupId>
+		   <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		   <version>2.0.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.retry</groupId>
+		    <artifactId>spring-retry</artifactId>
+		</dependency>
+	    <dependency>
+	        <groupId>org.openapitools</groupId>
+	        <artifactId>jackson-databind-nullable</artifactId>
+	        <version>0.1.0</version>
+	    </dependency>
+	    <dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+			    <groupId>org.openapitools</groupId>
+			    <artifactId>openapi-generator-maven-plugin</artifactId>
+			    <version>7.9.0</version>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>generate</goal>
+			            </goals>
+			            <configuration>
+							<skipValidateSpec>true</skipValidateSpec>								 
+			                <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+			                <generatorName>spring</generatorName>
+			                <configOptions>
+			                   	<sourceFolder>src/gen/java/main</sourceFolder>   
+                    			<useSpringBoot3>true</useSpringBoot3>
+                    			<useSpringfox>false</useSpringfox>
+                    			<interfaceOnly>true</interfaceOnly>
+			                </configOptions>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

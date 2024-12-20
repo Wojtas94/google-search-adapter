@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: Google Search Adapter API
+  description: A simple search API that calls the Custom Search JSON API and returns a list of search results
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/api/v1  
+tags:
+  - name: search
+    description: Search operation
+paths:
+  /search:
+    get:
+      tags:
+        - search
+      summary: Get information about people, organizations, etc
+      description: Get information about people, organizations, etc
+      operationId: getSearchResults
+      parameters:
+        - in: query
+          name: searchPhrase
+          schema:
+            type: string
+          required: true
+          description: Search phrase
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordArray'
+components:
+  schemas:
+    Details:
+      type: object
+      properties:
+        firstname:
+          type: string
+        role:
+          type: string
+        nickname:
+          type: string
+        birthday:
+          type: string   
+        category:
+          type: string
+        url:
+          type: string
+        label:
+          type: string
+    SearchResult:
+      type: object
+      properties:
+        title:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/Details'      
+    RecordArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/SearchResult'

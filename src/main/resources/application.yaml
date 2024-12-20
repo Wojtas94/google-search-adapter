@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: google-search-adapter
+google:
+  search:
+    api:
+      key: AIzaSyCbckdPyiFQK69phIcztKrX6DglK3mw5hMx
+      url: https://www.googleapis.com/customsearch/v1		
+    engine:
+      id: 625cb0ef35b6f43e5		
+    fields: items/pagemap/hcard(role,bday,fn,nickname,label,category,url),items/title
+max:
+  retry:
+    attempts: 3	
+server:
+  port: 8081										
