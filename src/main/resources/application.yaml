@@ -4,7 +4,7 @@ spring:
 google:
   search:
     api:
-      key: AIzaSyCbckdPyiFQK69phIcztKrX6DglK3mw5hMx
+      key: AIzaSyCbckdPyiFQK69phIcztKrX6DglK3mw5hM
       url: https://www.googleapis.com/customsearch/v1		
     engine:
       id: 625cb0ef35b6f43e5		

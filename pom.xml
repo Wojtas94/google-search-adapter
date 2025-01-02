@@ -11,8 +11,18 @@
 	<description>Google search adapter</description>
 	
 	<properties>
-		<java.version>22</java.version>
-		<springboot.version>3.3.5</springboot.version>
+		<java.version>21</java.version>
+		<maven.compiler.source>21</maven.compiler.source>
+ 		<maven.compiler.target>21</maven.compiler.target>
+		<springboot.version>3.4.0</springboot.version>
+		<springdoc.version>2.0.2</springdoc.version>
+		<jackson.version>0.2.6</jackson.version>
+		<lombok.version>1.18.34</lombok.version>
+		<spock.version>2.4-M4-groovy-4.0</spock.version>
+		<groovy.version>4.0.24</groovy.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<openapi-generator-plugin.version>7.9.0</openapi-generator-plugin.version>
+		<gmavenplus-plugin.version>4.0.1</gmavenplus-plugin.version>
 	</properties>
 	
 	<dependencyManagement>
@@ -37,22 +47,24 @@
 		  <artifactId>spring-aspects</artifactId>
 		</dependency>
 		<dependency>
-		   <groupId>org.springdoc</groupId>
-		   <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-		   <version>2.0.2</version>
-		</dependency>
-		<dependency>
 		    <groupId>org.springframework.retry</groupId>
 		    <artifactId>spring-retry</artifactId>
+		     <version>2.0.11</version>
+		</dependency>
+		<dependency>
+		   <groupId>org.springdoc</groupId>
+		   <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		   <version>${springdoc.version}</version>
 		</dependency>
 	    <dependency>
 	        <groupId>org.openapitools</groupId>
 	        <artifactId>jackson-databind-nullable</artifactId>
-	        <version>0.1.0</version>
+	        <version>${jackson.version}</version>
 	    </dependency>
 	    <dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
+		    <version>${lombok.version}</version>
 		    <scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -60,33 +72,76 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		 <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>${spock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+	        <groupId>org.spockframework</groupId>
+	        <artifactId>spock-spring</artifactId>
+	        <version>${spock.version}</version>
+	        <scope>test</scope>
+	    </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-spring</artifactId>
+            <scope>test</scope>
+            <version>${spock.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-			    <groupId>org.openapitools</groupId>
-			    <artifactId>openapi-generator-maven-plugin</artifactId>
-			    <version>7.9.0</version>
-			    <executions>
-			        <execution>
-			            <goals>
-			                <goal>generate</goal>
-			            </goals>
-			            <configuration>
-							<skipValidateSpec>true</skipValidateSpec>								 
-			                <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
-			                <generatorName>spring</generatorName>
-			                <configOptions>
-			                   	<sourceFolder>src/gen/java/main</sourceFolder>   
-                    			<useSpringBoot3>true</useSpringBoot3>
-                    			<useSpringfox>false</useSpringfox>
-                    			<interfaceOnly>true</interfaceOnly>
-			                </configOptions>
-			            </configuration>
-			        </execution>
-			    </executions>
-			</plugin>
+	               <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-compiler-plugin</artifactId>
+	                <version>${maven-compiler-plugin.version}</version>
+	            </plugin>
+				<plugin>
+				    <groupId>org.openapitools</groupId>
+				    <artifactId>openapi-generator-maven-plugin</artifactId>
+				    <version>${openapi-generator-plugin.version}</version>
+				    <executions>
+				        <execution>
+				            <goals>
+				                <goal>generate</goal>
+				            </goals>
+				            <configuration>
+								<skipValidateSpec>true</skipValidateSpec>								 
+				                <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+				                <generatorName>spring</generatorName>
+				                <configOptions>
+				                   	<sourceFolder>src/gen/java/main</sourceFolder>   
+	                    			<useSpringBoot3>true</useSpringBoot3>
+	                    			<useSpringfox>false</useSpringfox>
+	                    			<interfaceOnly>true</interfaceOnly>
+	                    			<additionalModelTypeAnnotations>@lombok.Builder @lombok.Getter @lombok.NoArgsConstructor @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
+				                </configOptions>
+				            </configuration>
+				        </execution>
+				    </executions>
+				</plugin>	
+			  <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>${gmavenplus-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 

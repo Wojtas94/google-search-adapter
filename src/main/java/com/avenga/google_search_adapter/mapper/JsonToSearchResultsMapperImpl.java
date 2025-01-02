@@ -38,22 +38,22 @@ public class JsonToSearchResultsMapperImpl implements JsonToSearchResultsMapper 
 			List<Details> details = item.pagemap.hcard.stream()
 					.map(hcard -> convertHcardToDetails(hcard))
 					.toList();
-			searchResults.add(new SearchResult()
+			searchResults.add(SearchResult.builder()
 					.title(item.title)
-					.details(details));
+					.details(details).build());
 		}
 		
 		return searchResults;
 	}
 	
 	private Details convertHcardToDetails(Hcard hcard) {
-		return new Details()
+		return Details.builder()
 				.firstname(hcard.fn)
 				.birthday(hcard.bday)
 				.category(hcard.category)
 				.nickname(hcard.nickname)
 				.label(hcard.label)
 				.role(hcard.role)
-				.url(hcard.url);
+				.url(hcard.url).build();
 	}
 }
