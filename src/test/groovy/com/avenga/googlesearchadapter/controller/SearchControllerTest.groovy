@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.controller
+package com.avenga.googlesearchadapter.controller
 
 import org.openapitools.model.Details
 import org.openapitools.model.SearchResult
@@ -11,9 +11,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestClientException
 
-import com.avenga.google_search_adapter.controller.ExceptionHandlerController
-import com.avenga.google_search_adapter.controller.SearchController
-import com.avenga.google_search_adapter.service.SearchService
+import com.avenga.googlesearchadapter.controller.ExceptionHandlerController
+import com.avenga.googlesearchadapter.controller.SearchController
+import com.avenga.googlesearchadapter.service.SearchService
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 

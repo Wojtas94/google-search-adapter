@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.config;
+package com.avenga.googlesearchadapter.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

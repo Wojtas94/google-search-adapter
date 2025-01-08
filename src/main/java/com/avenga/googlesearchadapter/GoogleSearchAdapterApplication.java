@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter;
+package com.avenga.googlesearchadapter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

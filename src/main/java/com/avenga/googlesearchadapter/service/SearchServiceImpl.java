@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.service;
+package com.avenga.googlesearchadapter.service;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.avenga.google_search_adapter.mapper.JsonToSearchResultsMapper;
+import com.avenga.googlesearchadapter.mapper.JsonToSearchResultsMapper;
 
 @Service
 public class SearchServiceImpl implements SearchService {

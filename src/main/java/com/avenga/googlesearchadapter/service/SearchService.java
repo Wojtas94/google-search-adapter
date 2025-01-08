@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.service;
+package com.avenga.googlesearchadapter.service;
 
 import java.util.List;
 

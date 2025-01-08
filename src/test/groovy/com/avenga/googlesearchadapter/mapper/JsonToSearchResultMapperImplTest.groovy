@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.mapper
+package com.avenga.googlesearchadapter.mapper
 
 import org.openapitools.model.SearchResult
 import org.springframework.boot.test.context.SpringBootTest

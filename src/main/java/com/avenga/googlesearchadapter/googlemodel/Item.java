@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.googlemodel;
+package com.avenga.googlesearchadapter.googlemodel;
 
 public class Item {
 

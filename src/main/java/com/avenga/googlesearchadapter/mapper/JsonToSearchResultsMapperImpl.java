@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.mapper;
+package com.avenga.googlesearchadapter.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.openapitools.model.Details;
 import org.openapitools.model.SearchResult;
 import org.springframework.stereotype.Component;
 
-import com.avenga.google_search_adapter.googlemodel.Hcard;
-import com.avenga.google_search_adapter.googlemodel.Item;
-import com.avenga.google_search_adapter.googlemodel.Root;
+import com.avenga.googlesearchadapter.googlemodel.Hcard;
+import com.avenga.googlesearchadapter.googlemodel.Item;
+import com.avenga.googlesearchadapter.googlemodel.Root;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

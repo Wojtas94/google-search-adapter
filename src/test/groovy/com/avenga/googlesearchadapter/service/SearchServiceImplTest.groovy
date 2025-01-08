@@ -1,11 +1,11 @@
-package com.avenga.google_search_adapter.service
+package com.avenga.googlesearchadapter.service
 
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.client.RestTemplate
 import org.spockframework.spring.SpringBean
 
-import com.avenga.google_search_adapter.mapper.JsonToSearchResultsMapper
+import com.avenga.googlesearchadapter.mapper.JsonToSearchResultsMapper
 
 import spock.lang.Specification
 

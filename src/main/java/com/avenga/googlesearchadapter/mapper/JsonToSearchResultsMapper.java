@@ -1,4 +1,4 @@
-package com.avenga.google_search_adapter.mapper;
+package com.avenga.googlesearchadapter.mapper;
 
 import java.util.List;
 
