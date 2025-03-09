@@ -3,6 +3,7 @@ package com.avenga.googlesearchadapter.mapper
 import org.openapitools.model.SearchResult
 import org.springframework.boot.test.context.SpringBootTest
 
+
 import spock.lang.Specification
 
 @SpringBootTest

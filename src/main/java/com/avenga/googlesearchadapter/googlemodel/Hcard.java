@@ -1,12 +1,17 @@
 package com.avenga.googlesearchadapter.googlemodel;
 
+import lombok.Data;
+import lombok.Generated;
+
+@Generated
+@Data
 public class Hcard {
 
-	public String role;
-	public String bday;
-	public String fn;
-	public String nickname;
-	public String label;
-	public String category;
-	public String url;
+	private String role;
+	private String bday;
+	private String fn;
+	private String nickname;
+	private String label;
+	private String category;
+	private String url;
 }

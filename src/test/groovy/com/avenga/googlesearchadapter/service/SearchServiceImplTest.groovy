@@ -14,6 +14,7 @@ import static org.springframework.http.HttpStatus.OK
 import org.openapitools.model.SearchResult
 
 
+
 @SpringBootTest
 class SearchServiceImplTest extends Specification {
 	

@@ -1,7 +1,5 @@
 package com.avenga.googlesearchadapter.controller
 
-import org.openapitools.model.Details
-import org.openapitools.model.SearchResult
 import org.spockframework.spring.SpringBean
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -17,9 +15,12 @@ import com.avenga.googlesearchadapter.service.SearchService
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 
-import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+
+import org.openapitools.model.Details
+import org.openapitools.model.SearchResult
 
 import spock.lang.Specification
 
@@ -59,24 +60,26 @@ class SearchControllerTest extends Specification {
 										.details(details).build()]								
         searchService.search(searchPhrase) >> searchResults
 
-	    expect: "status is 200"
-		def result = mvc.perform(get("/search")
+		when:
+		def response = mvc.perform(get("/search")
 			.param("searchPhrase", searchPhrase))
-			.andExpect(status().isOk())
-			.andReturn()
-			
-		def response = Arrays.asList(objectMapper.readValue(result.getResponse().getContentAsString(), SearchResult[].class))
-		response == searchResults;	
+		
+		then: "expect status is 200"
+		response.andExpect(status().isOk()) 
+		def result = Arrays.asList(objectMapper.readValue(response.andReturn().getResponse().getContentAsString(), SearchResult[].class))
+		result == searchResults;	
 	}
 	
-	def "should return status 503" () {
+	def "should return status 500" () {
 		given:
 		String searchPhrase = "Robert Lewandowski"
-		searchService.search("Robert Lewandowski") >> { throw new HttpClientErrorException(SERVICE_UNAVAILABLE) }
+		searchService.search("Robert Lewandowski") >> { throw new HttpClientErrorException(INTERNAL_SERVER_ERROR) }
 		
-		expect: "status is 503"
-		def result = mvc.perform(get("/search")
+		when:
+		def response = mvc.perform(get("/search")
 			.param("searchPhrase", searchPhrase))
-			.andExpect(status().isServiceUnavailable())
+		
+		then: "expect status is 500"
+		response.andExpect(status().isInternalServerError())
 	}
 }
