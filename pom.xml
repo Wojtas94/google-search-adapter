@@ -123,7 +123,7 @@
 	                    			<useSpringBoot3>true</useSpringBoot3>
 	                    			<useSpringfox>false</useSpringfox>
 	                    			<interfaceOnly>true</interfaceOnly>
-	                    			<additionalModelTypeAnnotations>@lombok.Builder @lombok.Getter @lombok.NoArgsConstructor @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
+	                    			<additionalModelTypeAnnotations>@lombok.Builder @lombok.Data @lombok.NoArgsConstructor @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
 				                </configOptions>
 				            </configuration>
 				        </execution>
@@ -142,6 +142,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+			    <groupId>org.jacoco</groupId>
+			    <artifactId>jacoco-maven-plugin</artifactId>
+			    <version>0.8.12</version>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>report</id>
+			            <phase>prepare-package</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
 		</plugins>
 	</build>
 

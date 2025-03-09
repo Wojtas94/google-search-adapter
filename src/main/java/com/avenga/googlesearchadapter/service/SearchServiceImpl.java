@@ -42,8 +42,10 @@ public class SearchServiceImpl implements SearchService {
     @Retryable(retryFor = { HttpClientErrorException.class }, backoff = @Backoff(delay = 2000))
 	@Override
 	public List<SearchResult> search(String searchPhrase) {
-		String url = searchApiUrl + "?key=" + apiKey + "&cx=" + searchEngineId + "&q=" + searchPhrase + "&fields=" + fields;
-		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+    	StringBuilder url = new StringBuilder();
+		url.append(searchApiUrl).append("?key=").append(apiKey).append("&cx=").append(searchEngineId)
+			.append("&q=").append(searchPhrase).append("&fields=").append(fields);
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url.toString(), String.class);
 		return mapper.convertJsonToListOfSearchResults(responseEntity.getBody());
 	}
 

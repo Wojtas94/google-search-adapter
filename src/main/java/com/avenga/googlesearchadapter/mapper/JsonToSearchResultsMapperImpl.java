@@ -22,7 +22,7 @@ public class JsonToSearchResultsMapperImpl implements JsonToSearchResultsMapper 
 		List<SearchResult> searchResults = new ArrayList<SearchResult>();
 		
         try {
-			 om.readValue(jsonBody, Root.class).items.forEach(item -> searchResults.addAll(convertToSearchResultList(item)));
+        	om.readValue(jsonBody, Root.class).getItems().forEach(item -> searchResults.addAll(convertToSearchResultList(item)));
 
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -34,12 +34,12 @@ public class JsonToSearchResultsMapperImpl implements JsonToSearchResultsMapper 
 	private List<SearchResult> convertToSearchResultList(Item item) {
 		List<SearchResult> searchResults = new ArrayList<SearchResult>();
 		
-		if (item.title != null && item.pagemap != null && item.pagemap.hcard != null) {
-			List<Details> details = item.pagemap.hcard.stream()
+		if (item.getTitle() != null && item.getPagemap() != null && item.getPagemap().getHcard() != null) {
+			List<Details> details = item.getPagemap().getHcard().stream()
 					.map(hcard -> convertHcardToDetails(hcard))
 					.toList();
 			searchResults.add(SearchResult.builder()
-					.title(item.title)
+					.title(item.getTitle())
 					.details(details).build());
 		}
 		
@@ -48,12 +48,12 @@ public class JsonToSearchResultsMapperImpl implements JsonToSearchResultsMapper 
 	
 	private Details convertHcardToDetails(Hcard hcard) {
 		return Details.builder()
-				.firstname(hcard.fn)
-				.birthday(hcard.bday)
-				.category(hcard.category)
-				.nickname(hcard.nickname)
-				.label(hcard.label)
-				.role(hcard.role)
-				.url(hcard.url).build();
+				.firstname(hcard.getFn())
+				.birthday(hcard.getBday())
+				.category(hcard.getCategory())
+				.nickname(hcard.getNickname())
+				.label(hcard.getLabel())
+				.role(hcard.getRole())
+				.url(hcard.getUrl()).build();
 	}
 }
